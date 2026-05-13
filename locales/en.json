@@ -326,6 +326,7 @@
     "requireSimulationRequirement": "Please provide a simulation requirement (simulation_requirement)",
     "requireFileUpload": "Please upload at least one document file",
     "noDocProcessed": "No documents were processed successfully. Please check file formats.",
+    "llmKeyMissingOrPlaceholder": "LLM_API_KEY is missing or still a placeholder. Set a real API key in the project root .env (see .env.example), restart the backend, then try again.",
     "requireProjectId": "Please provide project_id",
     "configError": "Configuration error: {details}",
     "zepApiKeyMissing": "ZEP_API_KEY not configured",

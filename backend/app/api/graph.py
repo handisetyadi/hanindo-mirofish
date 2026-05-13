@@ -31,6 +31,21 @@ def allowed_file(filename: str) -> bool:
     return ext in Config.ALLOWED_EXTENSIONS
 
 
+def _llm_key_is_placeholder() -> bool:
+    """未配置或为示例/预览占位符时，本体生成会在调用 LLM 前失败；提前返回明确错误。"""
+    key = (Config.LLM_API_KEY or '').strip().lower()
+    if not key:
+        return True
+    placeholders = {
+        'local-preview-dummy',
+        'your_api_key_here',
+        'your_api_key',
+        'sk-placeholder',
+        'placeholder',
+    }
+    return key in placeholders
+
+
 # ============== 项目管理接口 ==============
 
 @graph_bp.route('/project/<project_id>', methods=['GET'])
@@ -163,8 +178,12 @@ def generate_ontology():
                 "success": False,
                 "error": t('api.requireSimulationRequirement')
             }), 400
-        
-        # 获取上传的文件
+
+        if _llm_key_is_placeholder():
+            return jsonify({
+                "success": False,
+                "error": t('api.llmKeyMissingOrPlaceholder')
+            }), 400
         uploaded_files = request.files.getlist('files')
         if not uploaded_files or all(not f.filename for f in uploaded_files):
             return jsonify({
@@ -248,11 +267,11 @@ def generate_ontology():
         })
         
     except Exception as e:
-        return jsonify({
-            "success": False,
-            "error": str(e),
-            "traceback": traceback.format_exc()
-        }), 500
+        logger.exception('本体生成失败')
+        payload = {"success": False, "error": str(e)}
+        if Config.DEBUG:
+            payload["traceback"] = traceback.format_exc()
+        return jsonify(payload), 500
 
 
 # ============== 接口2：构建图谱 ==============

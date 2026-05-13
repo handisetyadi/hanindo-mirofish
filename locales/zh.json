@@ -326,6 +326,7 @@
     "requireSimulationRequirement": "请提供模拟需求描述 (simulation_requirement)",
     "requireFileUpload": "请至少上传一个文档文件",
     "noDocProcessed": "没有成功处理任何文档，请检查文件格式",
+    "llmKeyMissingOrPlaceholder": "LLM_API_KEY 未配置或仍是占位符。请在项目根目录 .env 中填写真实密钥（参考 .env.example），重启后端后再试。",
     "requireProjectId": "请提供 project_id",
     "configError": "配置错误: {details}",
     "zepApiKeyMissing": "ZEP_API_KEY未配置",

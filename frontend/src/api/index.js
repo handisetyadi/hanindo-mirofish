@@ -13,6 +13,10 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
+    // FormData 必须由浏览器/axios 自动设置 multipart 边界；勿保留默认的 application/json
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type']
+    }
     config.headers['Accept-Language'] = i18n.global.locale.value
     return config
   },
@@ -37,17 +41,27 @@ service.interceptors.response.use(
   },
   error => {
     console.error('Response error:', error)
-    
+
+    const status = error.response?.status
+    const data = error.response?.data
+    if (data && typeof data === 'object' && (data.error != null || data.message != null)) {
+      const msg = data.error || data.message || `HTTP ${status}`
+      const wrapped = new Error(String(msg))
+      wrapped.status = status
+      wrapped.original = error
+      return Promise.reject(wrapped)
+    }
+
     // 处理超时
     if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
       console.error('Request timeout')
     }
-    
+
     // 处理网络错误
     if (error.message === 'Network Error') {
       console.error('Network error - please check your connection')
     }
-    
+
     return Promise.reject(error)
   }
 )
