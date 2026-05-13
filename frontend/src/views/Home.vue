@@ -312,35 +312,20 @@ const startSimulation = () => {
 </script>
 
 <style scoped>
-/* 全局变量与重置 */
-:root {
-  --black: #000000;
-  --white: #FFFFFF;
-  --orange: #FF4500;
-  --gray-light: #F5F5F5;
-  --gray-text: #666666;
-  --border: #E5E5E5;
-  /* 
-    使用 Space Grotesk 作为主要标题字体，JetBrains Mono 作为代码/标签字体
-    确保已在 index.html 引入这些 Google Fonts 
-  */
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
-  --font-cn: 'Noto Sans SC', system-ui, sans-serif;
-}
+/* Theme tokens: src/assets/theme.css */
 
 .home-container {
   min-height: 100vh;
-  background: var(--white);
+  background: var(--mf-bg);
   font-family: var(--font-sans);
-  color: var(--black);
+  color: var(--mf-warm-ink);
 }
 
 /* 顶部导航 */
 .navbar {
   height: 60px;
-  background: var(--black);
-  color: var(--white);
+  background: var(--mf-nav-bg);
+  color: var(--mf-nav-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -361,7 +346,7 @@ const startSimulation = () => {
 }
 
 .github-link {
-  color: var(--white);
+  color: var(--mf-nav-text);
   text-decoration: none;
   font-family: var(--font-mono);
   font-size: 0.9rem;
@@ -410,8 +395,8 @@ const startSimulation = () => {
 }
 
 .orange-tag {
-  background: var(--orange);
-  color: var(--white);
+  background: var(--mf-accent);
+  color: var(--mf-nav-text);
   padding: 4px 10px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -419,7 +404,7 @@ const startSimulation = () => {
 }
 
 .version-text {
-  color: #999;
+  color: var(--mf-soft);
   font-weight: 500;
   letter-spacing: 0.5px;
 }
@@ -430,11 +415,11 @@ const startSimulation = () => {
   font-weight: 500;
   margin: 0 0 40px 0;
   letter-spacing: -2px;
-  color: var(--black);
+  color: var(--mf-warm-ink);
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #000000 0%, #444444 100%);
+  background: linear-gradient(90deg, var(--mf-blue-deep) 0%, var(--mf-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -455,7 +440,7 @@ const startSimulation = () => {
 }
 
 .highlight-bold {
-  color: var(--black);
+  color: var(--mf-warm-ink);
   font-weight: 700;
 }
 
@@ -466,27 +451,27 @@ const startSimulation = () => {
 }
 
 .highlight-code {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--mf-accent-soft);
   padding: 2px 6px;
   border-radius: 2px;
   font-family: var(--font-mono);
   font-size: 0.9em;
-  color: var(--black);
+  color: var(--mf-warm-ink);
   font-weight: 600;
 }
 
 .slogan-text {
   font-size: 1.2rem;
   font-weight: 520;
-  color: var(--black);
+  color: var(--mf-warm-ink);
   letter-spacing: 1px;
-  border-left: 3px solid var(--orange);
+  border-left: 3px solid var(--mf-accent);
   padding-left: 15px;
   margin-top: 20px;
 }
 
 .blinking-cursor {
-  color: var(--orange);
+  color: var(--mf-accent);
   animation: blink 1s step-end infinite;
   font-weight: 700;
 }
@@ -499,7 +484,7 @@ const startSimulation = () => {
 .decoration-square {
   width: 16px;
   height: 16px;
-  background: var(--orange);
+  background: var(--mf-accent);
 }
 
 .hero-right {
@@ -531,13 +516,13 @@ const startSimulation = () => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--orange);
+  color: var(--mf-accent);
   font-size: 1.2rem;
   transition: all 0.2s;
 }
 
 .scroll-down-btn:hover {
-  border-color: var(--orange);
+  border-color: var(--mf-accent);
 }
 
 /* Dashboard 双栏布局 */
@@ -563,7 +548,7 @@ const startSimulation = () => {
 .panel-header {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: #999;
+  color: var(--mf-soft);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -571,7 +556,7 @@ const startSimulation = () => {
 }
 
 .status-dot {
-  color: var(--orange);
+  color: var(--mf-accent);
   font-size: 0.8rem;
 }
 
@@ -608,7 +593,7 @@ const startSimulation = () => {
 
 .metric-label {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--mf-soft);
 }
 
 /* 项目模拟步骤介绍 */
@@ -621,7 +606,7 @@ const startSimulation = () => {
 .steps-header {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: #999;
+  color: var(--mf-soft);
   margin-bottom: 25px;
   display: flex;
   align-items: center;
@@ -673,7 +658,7 @@ const startSimulation = () => {
 }
 
 .console-box {
-  border: 1px solid #CCC; /* 外部实线 */
+  border: 1px solid var(--mf-border); /* 外部实线 */
   padding: 8px; /* 内边距形成双重边框感 */
 }
 
@@ -691,11 +676,11 @@ const startSimulation = () => {
   margin-bottom: 15px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: #666;
+  color: var(--mf-muted);
 }
 
 .upload-zone {
-  border: 1px dashed #CCC;
+  border: 1px dashed var(--mf-border);
   height: 200px;
   overflow-y: auto;
   display: flex;
@@ -703,7 +688,7 @@ const startSimulation = () => {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
-  background: #FAFAFA;
+  background: var(--mf-cream);
 }
 
 .upload-zone.has-files {
@@ -711,8 +696,8 @@ const startSimulation = () => {
 }
 
 .upload-zone:hover {
-  background: #F0F0F0;
-  border-color: #999;
+  background: var(--mf-beige);
+  border-color: var(--mf-soft);
 }
 
 .upload-placeholder {
@@ -722,12 +707,12 @@ const startSimulation = () => {
 .upload-icon {
   width: 40px;
   height: 40px;
-  border: 1px solid #DDD;
+  border: 1px solid var(--mf-border);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 15px;
-  color: #999;
+  color: var(--mf-soft);
 }
 
 .upload-title {
@@ -739,7 +724,7 @@ const startSimulation = () => {
 .upload-hint {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: #999;
+  color: var(--mf-soft);
 }
 
 .file-list {
@@ -755,7 +740,7 @@ const startSimulation = () => {
   align-items: center;
   background: var(--white);
   padding: 8px 12px;
-  border: 1px solid #EEE;
+  border: 1px solid var(--mf-accent-soft);
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
@@ -770,7 +755,7 @@ const startSimulation = () => {
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
-  color: #999;
+  color: var(--mf-soft);
 }
 
 .console-divider {
@@ -784,21 +769,21 @@ const startSimulation = () => {
   content: '';
   flex: 1;
   height: 1px;
-  background: #EEE;
+  background: var(--mf-beige);
 }
 
 .console-divider span {
   padding: 0 15px;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: #BBB;
+  color: var(--mf-soft);
   letter-spacing: 1px;
 }
 
 .input-wrapper {
   position: relative;
-  border: 1px solid #DDD;
-  background: #FAFAFA;
+  border: 1px solid var(--mf-border);
+  background: var(--mf-cream);
 }
 
 .code-input {
@@ -820,13 +805,13 @@ const startSimulation = () => {
   right: 15px;
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: #AAA;
+  color: var(--mf-soft);
 }
 
 .start-engine-btn {
   width: 100%;
-  background: var(--black);
-  color: var(--white);
+  background: var(--mf-blue-deep);
+  color: var(--mf-cream);
   border: none;
   padding: 20px;
   font-family: var(--font-mono);
@@ -844,14 +829,14 @@ const startSimulation = () => {
 
 /* 可点击状态（非禁用） */
 .start-engine-btn:not(:disabled) {
-  background: var(--black);
-  border: 1px solid var(--black);
+  background: var(--mf-blue-deep);
+  border: 1px solid var(--mf-blue-deep);
   animation: pulse-border 2s infinite;
 }
 
 .start-engine-btn:hover:not(:disabled) {
-  background: var(--orange);
-  border-color: var(--orange);
+  background: var(--mf-accent);
+  border-color: var(--mf-accent);
   transform: translateY(-2px);
 }
 
@@ -860,18 +845,18 @@ const startSimulation = () => {
 }
 
 .start-engine-btn:disabled {
-  background: #E5E5E5;
-  color: #999;
+  background: var(--mf-beige);
+  color: var(--mf-soft);
   cursor: not-allowed;
   transform: none;
-  border: 1px solid #E5E5E5;
+  border: 1px solid var(--mf-border);
 }
 
 /* 引导动画：微妙的边框脉冲 */
 @keyframes pulse-border {
-  0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
-  70% { box-shadow: 0 0 0 6px rgba(0, 0, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(61, 84, 102, 0.35); }
+  70% { box-shadow: 0 0 0 6px rgba(61, 84, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(61, 84, 102, 0); }
 }
 
 /* 响应式适配 */

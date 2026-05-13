@@ -1,0 +1,38 @@
+/**
+ * MiroFish — muted yellow-beige + yellow-blue (dusty slate) palette
+ */
+:root {
+  --mf-cream: #faf6ee;
+  --mf-beige: #ebe4d8;
+  --mf-bg: #f2ebe0;
+  --mf-warm-ink: #3a372e;
+  --mf-muted: #6b6558;
+  --mf-soft: #8a8374;
+  --mf-accent: #b8944a;
+  --mf-accent-hover: #a6823e;
+  --mf-accent-soft: #e8dcc4;
+  --mf-blue: #5a7588;
+  --mf-blue-deep: #3d5466;
+  --mf-blue-mist: #dde6ec;
+  --mf-border: #d4cbb8;
+  --mf-white: #fffef9;
+
+  --mf-nav-bg: var(--mf-blue-deep);
+  --mf-nav-text: var(--mf-cream);
+
+  --mf-success: #5a7d6e;
+  --mf-error: #b85c5c;
+
+  /* Legacy names used across views */
+  --black: var(--mf-warm-ink);
+  --white: var(--mf-white);
+  --orange: var(--mf-accent);
+  --gray-light: var(--mf-beige);
+  --gray-border: var(--mf-border);
+  --gray-text: var(--mf-muted);
+  --border: var(--mf-border);
+
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  --font-cn: 'Noto Sans SC', system-ui, sans-serif;
+}
