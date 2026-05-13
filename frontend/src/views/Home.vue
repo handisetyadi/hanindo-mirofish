@@ -145,7 +145,7 @@
                   ref="fileInput"
                   type="file"
                   multiple
-                  accept=".pdf,.md,.txt"
+                  :accept="UPLOAD_ACCEPT_ATTR"
                   @change="handleFileSelect"
                   style="display: none"
                   :disabled="loading"
@@ -214,6 +214,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { UPLOAD_ACCEPT_ATTR, isAllowedUploadFilename } from '../constants/uploadFormats.js'
 import HistoryDatabase from '../components/HistoryDatabase.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 
@@ -274,10 +275,7 @@ const handleDrop = (e) => {
 
 // 添加文件
 const addFiles = (newFiles) => {
-  const validFiles = newFiles.filter(file => {
-    const ext = file.name.split('.').pop().toLowerCase()
-    return ['pdf', 'md', 'txt'].includes(ext)
-  })
+  const validFiles = newFiles.filter((file) => isAllowedUploadFilename(file.name))
   files.value.push(...validFiles)
 }
 

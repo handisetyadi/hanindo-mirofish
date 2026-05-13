@@ -38,7 +38,14 @@ class Config:
     # 文件上传配置
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024  # 50MB
     UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '../uploads')
-    ALLOWED_EXTENSIONS = {'pdf', 'md', 'txt', 'markdown'}
+    # 与 FileParser / 前端 uploadFormats 保持同步
+    ALLOWED_EXTENSIONS = frozenset({
+        'pdf', 'md', 'markdown', 'txt', 'csv', 'tsv',
+        'xlsx', 'xls', 'xlsm',
+        'doc', 'docx', 'ppt', 'pptx',
+        'html', 'htm', 'xml', 'json', 'rtf',
+        'yaml', 'yml', 'log',
+    })
     
     # 文本处理配置
     DEFAULT_CHUNK_SIZE = 500  # 默认切块大小
